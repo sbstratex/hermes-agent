@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TAKE OVER — Portfolio Command Center</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">TO</span>
+    <div class="brand-text">
+      <span class="brand-name">TAKE OVER</span>
+      <span class="brand-sub">Portfolio Command Center</span>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <div class="scenario-box">
+      <label for="scenarioSelect">Scenario</label>
+      <select id="scenarioSelect"></select>
+      <button id="saveScenarioBtn" class="btn btn-ghost" title="Save working changes to current scenario">Save</button>
+      <button id="saveAsBtn" class="btn btn-ghost" title="Save working changes as a new scenario">Save as scenario</button>
+      <button id="deleteScenarioBtn" class="btn btn-danger-ghost" title="Delete current scenario">Delete</button>
+      <span id="dirtyDot" class="dirty-dot" title="Unsaved changes"></span>
+    </div>
+    <button id="addProjectBtn" class="btn btn-accent">+ Add project</button>
+  </div>
+</header>
+
+<section id="portfolioBar" class="portfolio-bar"></section>
+
+<main id="grid" class="grid"></main>
+
+<div id="deepOverlay" class="overlay hidden">
+  <div class="deep-panel">
+    <div class="deep-head">
+      <div>
+        <h2 id="deepTitle"></h2>
+        <p id="deepAddress" class="muted"></p>
+      </div>
+      <div class="deep-head-actions">
+        <button id="deepSaveBtn" class="btn btn-ghost">Save</button>
+        <button id="deepSaveAsBtn" class="btn btn-ghost">Save as scenario</button>
+        <button id="deepDeleteBtn" class="btn btn-danger-ghost">Delete project</button>
+        <button id="deepCloseBtn" class="btn btn-accent">Back to overview</button>
+      </div>
+    </div>
+    <div id="deepBody" class="deep-body"></div>
+  </div>
+</div>
+
+<div id="modalOverlay" class="overlay hidden">
+  <div class="modal">
+    <h2>Add project</h2>
+    <form id="addProjectForm" class="modal-form"></form>
+    <div class="modal-actions">
+      <button id="modalCancelBtn" class="btn btn-ghost">Cancel</button>
+      <button id="modalCreateBtn" class="btn btn-accent">Create project</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="seed.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
