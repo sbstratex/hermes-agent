@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TAKE OVER — Portfolio Command Center</title>
+<link rel="icon" type="image/png" href="https://static.wixstatic.com/media/a8f184_87067048f96049368630241ee736cc60%7Emv2.png/v1/fill/w_64,h_64,lg_1,usm_0.66_1.00_0.01/a8f184_87067048f96049368630241ee736cc60%7Emv2.png" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <img class="brand-mark" src="https://static.wixstatic.com/media/a8f184_6ebbaa128d6c43dbbe1946d49cc459e1~mv2.png/v1/fill/w_120,h_216,al_c,q_90,usm_0.66_1.00_0.01/a8f184_6ebbaa128d6c43dbbe1946d49cc459e1~mv2.png" alt="TAKE OVER" />
+    <div class="brand-text">
+      <span class="brand-name">TAKE OVER</span>
+      <span class="brand-sub">Portfolio Command Center</span>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <input id="searchInput" type="text" placeholder="FILTER PROJECTS…" />
+    <div class="scenario-box">
+      <label for="scenarioSelect">Scenario</label>
+      <select id="scenarioSelect"></select>
+      <button id="saveScenarioBtn" class="btn btn-ghost" title="Save working changes to current scenario">Save</button>
+      <button id="saveAsBtn" class="btn btn-ghost" title="Save working changes as a new scenario">Save as scenario</button>
+      <button id="deleteScenarioBtn" class="btn btn-danger-ghost" title="Delete current scenario">Delete</button>
+      <span id="dirtyDot" class="dirty-dot" title="Unsaved changes"></span>
+    </div>
+    <button id="exportBtn" class="btn btn-ghost" title="Download current scenario as JSON">Export</button>
+    <button id="importBtn" class="btn btn-ghost" title="Import projects from a JSON file">Import</button>
+    <input id="importFile" type="file" accept="application/json" class="hidden" />
+    <button id="addProjectBtn" class="btn btn-accent">+ Add project</button>
+  </div>
+</header>
+
+<section id="portfolioBar" class="portfolio-bar"></section>
+
+<main id="grid" class="grid"></main>
+
+<div id="deepOverlay" class="overlay hidden">
+  <div class="deep-panel">
+    <div class="deep-head">
+      <div>
+        <h2 id="deepTitle"></h2>
+        <p id="deepAddress" class="muted"></p>
+      </div>
+      <div class="deep-head-actions">
+        <button id="deepSaveBtn" class="btn btn-ghost">Save</button>
+        <button id="deepSaveAsBtn" class="btn btn-ghost">Save as scenario</button>
+        <button id="deepDeleteBtn" class="btn btn-danger-ghost">Delete project</button>
+        <button id="deepCloseBtn" class="btn btn-accent">Back to overview</button>
+      </div>
+    </div>
+    <div id="deepBody" class="deep-body"></div>
+  </div>
+</div>
+
+<div id="modalOverlay" class="overlay hidden">
+  <div class="modal">
+    <h2>Add project</h2>
+    <form id="addProjectForm" class="modal-form"></form>
+    <div class="modal-actions">
+      <button id="modalCancelBtn" class="btn btn-ghost">Cancel</button>
+      <button id="modalCreateBtn" class="btn btn-accent">Create project</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="seed.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
