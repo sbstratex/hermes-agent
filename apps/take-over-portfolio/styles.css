@@ -60,18 +60,9 @@ body { min-height: 100vh; }
 .brand { display: flex; align-items: center; gap: 12px; }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 10px;
-  background: var(--pink);
-  color: var(--line);
-  border: 3px solid var(--line);
-  box-shadow: 3px 3px 0 var(--line);
-  font-family: var(--font-head);
-  font-weight: 500;
-  font-size: 19px;
+  height: 52px;
+  width: auto;
+  display: block;
 }
 
 .brand-text { display: flex; flex-direction: column; }
