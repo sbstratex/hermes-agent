@@ -16,6 +16,7 @@
     </div>
   </div>
   <div class="topbar-actions">
+    <input id="searchInput" type="text" placeholder="FILTER PROJECTS…" />
     <div class="scenario-box">
       <label for="scenarioSelect">Scenario</label>
       <select id="scenarioSelect"></select>
@@ -24,6 +25,9 @@
       <button id="deleteScenarioBtn" class="btn btn-danger-ghost" title="Delete current scenario">Delete</button>
       <span id="dirtyDot" class="dirty-dot" title="Unsaved changes"></span>
     </div>
+    <button id="exportBtn" class="btn btn-ghost" title="Download current scenario as JSON">Export</button>
+    <button id="importBtn" class="btn btn-ghost" title="Import projects from a JSON file">Import</button>
+    <input id="importFile" type="file" accept="application/json" class="hidden" />
     <button id="addProjectBtn" class="btn btn-accent">+ Add project</button>
   </div>
 </header>

@@ -28,6 +28,7 @@ python3 -m http.server 8080
   live.
 - **Add projects** — "+ Add project" opens a form for location, financials
   and initial categories.
+- **Filter / Export / Import** — live text filter over tiles; export the active scenario as JSON; import a projects JSON back in.
 - **Scenarios** — edit numbers freely, then **Save** to persist into the
   current scenario, or **Save as scenario** to store the current state under a
   new name. Switch, create and delete scenarios from the header. The "Base"
@@ -46,7 +47,7 @@ python3 -m http.server 8080
 ## Files
 
 - `index.html` — markup
-- `styles.css` — bold light CI in the spirit of take-over.space (off-white + ink borders + hard shadows, loud accent, heavy grotesk type); accent is a single `--accent` variable
+- `styles.css` — exact take-over.space CI, extracted from the live site's Wix CSS/fonts and brand marks: GT Pressura Mono (served from the brand's wixstatic ufonts), white `#FFFFFF` background, charcoal `#393939` ink, hot pink `#FF94FF`, vivid green `#00D800`, coral `#F7A8A1`
 - `seed.js` — sample portfolio + pure KPI engine (`computeProject`,
   `computePortfolio`), also loadable in Node for tests
 - `app.js` — rendering, editing, scenario persistence

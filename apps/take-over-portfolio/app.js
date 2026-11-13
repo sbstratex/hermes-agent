@@ -100,16 +100,26 @@ function escapeHtml(s) {
 
 function renderGrid() {
   const grid = $("#grid");
+  const q = ($("#searchInput").value || "").trim().toLowerCase();
+  const visible = state.working.filter((p) =>
+    !q || [p.name, p.city, p.street, p.land, p.zip].join(" ").toLowerCase().includes(q)
+  );
   if (!state.working.length) {
     grid.innerHTML = '<div class="empty">No projects yet. Click “+ Add project” to create your first one.</div>';
     return;
   }
+  if (!visible.length) {
+    grid.innerHTML = '<div class="empty">No projects match the filter.</div>';
+    return;
+  }
   grid.innerHTML = "";
-  state.working.forEach((p) => {
+  visible.forEach((p, i) => {
     const k = computeProject(p);
     const tile = document.createElement("button");
     tile.className = "tile";
     tile.innerHTML = `
+      <div class="tile-strip c${i % 3}"></div>
+      <div class="tile-body">
       <div class="tile-head">
         <div>
           <div class="tile-name">${escapeHtml(p.name)}</div>
@@ -127,6 +137,7 @@ function renderGrid() {
       </div>
       <div class="tile-cats">${categoryChips(p)}</div>
       <div class="tile-foot"><span>${num0.format(p.sqm)} m² · yield on cost ${pct1.format(k.yieldOnCost)}</span><span class="go">Deep dive →</span></div>
+      </div>
     `;
     tile.addEventListener("click", () => openDeep(p.id));
     grid.appendChild(tile);
@@ -433,6 +444,38 @@ function init() {
   $("#addProjectBtn").addEventListener("click", () => {
     renderAddForm();
     $("#modalOverlay").classList.remove("hidden");
+  });
+  $("#searchInput").addEventListener("input", renderGrid);
+  $("#exportBtn").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify({ scenario: state.store.active, exportedAt: new Date().toISOString(), projects: state.working }, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `take-over-${state.store.active.replace(/\s+/g, "-").toLowerCase()}.json`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    toast("Scenario exported as JSON");
+  });
+  $("#importBtn").addEventListener("click", () => $("#importFile").click());
+  $("#importFile").addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const data = JSON.parse(reader.result);
+        const projects = Array.isArray(data) ? data : data.projects;
+        if (!Array.isArray(projects)) throw new Error("no projects array");
+        state.working = projects;
+        markDirty();
+        renderPortfolioBar();
+        renderGrid();
+        toast(`Imported ${projects.length} projects — remember to Save`);
+      } catch (err) {
+        toast("Import failed: invalid JSON");
+      }
+      e.target.value = "";
+    };
+    reader.readAsText(file);
   });
   $("#modalCancelBtn").addEventListener("click", () => $("#modalOverlay").classList.add("hidden"));
   $("#modalCreateBtn").addEventListener("click", createProjectFromForm);
