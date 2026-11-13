@@ -46,7 +46,7 @@ python3 -m http.server 8080
 ## Files
 
 - `index.html` — markup
-- `styles.css` — dark, bold CI (near-black + signal lime, heavy grotesk type)
+- `styles.css` — bold light CI in the spirit of take-over.space (off-white + ink borders + hard shadows, loud accent, heavy grotesk type); accent is a single `--accent` variable
 - `seed.js` — sample portfolio + pure KPI engine (`computeProject`,
   `computePortfolio`), also loadable in Node for tests
 - `app.js` — rendering, editing, scenario persistence
